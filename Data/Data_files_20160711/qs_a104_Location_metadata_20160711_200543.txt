@@ -1,0 +1,86 @@
+"Park_code","Unit_code","Location_code","Location_type","Location_status","Location_name","Panel_name","Panel_type","Firing_order","UTME_public","UTMN_public","Public_offset","Location_desc","Location_notes","Loc_established"
+"SAJH","AC","1-1","Transect","Active",,"1","Annual",1,497813,5368084,"Actual",,,5/23/2007 0:00:00
+"SAJH","AC","1-10","Transect","Active",,"1","Annual",35,499927.5,5366957,"Actual",,,4/29/2008 0:00:00
+"SAJH","AC","1-11","Transect","Active",,"1","Annual",36,501701,5366813,"Actual",,,4/28/2008 0:00:00
+"SAJH","AC","1-12","Transect","Active",,"1","Annual",37,498255,5367328.87,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","1-13","Transect","Active",,"1","Annual",38,499340.5,5367020.14,"Actual",,,4/30/2008 0:00:00
+"SAJH","AC","1-14","Transect","Active",,"1","Annual",39,500794.5,5366930.4,"Actual",,,4/29/2008 0:00:00
+"SAJH","AC","1-15","Transect","Active",,"1","Annual",40,498615,5367195,"Actual",,,4/30/2008 0:00:00
+"SAJH","AC","1-16","Transect","Active",,"1","Annual",41,499908,5366960,"Actual",,,4/29/2008 0:00:00
+"SAJH","AC","1-17","Transect","Active",,"1","Annual",42,501520,5366826,"Actual",,,4/29/2008 0:00:00
+"SAJH","AC","1-18","Transect","Active",,"1","Annual",43,497924,5367406.33,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","1-19","Transect","Active",,"1","Annual",44,499705,5366996.48,"Actual",,,4/30/2008 0:00:00
+"SAJH","AC","1-2","Transect","Active",,"1","Annual",2,498741,5367241.09,"Actual",,,5/7/2007 0:00:00
+"SAJH","AC","1-20","Transect","Active",,"1","Annual",45,501304.5,5366843,"Actual",,,4/29/2008 0:00:00
+"SAJH","AC","1-3","Transect","Active",,"1","Annual",3,500519.5,5366892.39,"Actual",,,5/8/2007 0:00:00
+"SAJH","AC","1-4","Transect","Active",,"1","Annual",4,498262,5367324.44,"Actual",,,5/8/2007 0:00:00
+"SAJH","AC","1-5","Transect","Active",,"1","Annual",5,500265.5,5366900,"Actual",,,5/7/2007 0:00:00
+"SAJH","AC","1-6","Transect","Active",,"1","Annual",31,498137,5367383.96,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","1-7","Transect","Active",,"1","Annual",32,499732,5366991.25,"Actual",,,4/30/2008 0:00:00
+"SAJH","AC","1-8","Transect","Active",,"1","Annual",33,500972,5366886,"Actual",,,4/29/2008 0:00:00
+"SAJH","AC","1-9","Transect","Active",,"1","Annual",34,498860,5367133.34,"Actual",,,4/30/2008 0:00:00
+"SAJH","AC","2-1","Transect","Active",,"2","Alternating",6,501193.5,5366850,"Actual",,,5/9/2007 0:00:00
+"SAJH","AC","2-2","Transect","Active",,"2","Alternating",7,498317,5367132.47,"Actual",,,5/22/2007 0:00:00
+"SAJH","AC","2-3","Transect","Active",,"2","Alternating",8,499432.5,5367088,"Actual",,,5/9/2007 0:00:00
+"SAJH","AC","2-4","Transect","Active",,"2","Alternating",9,501083,5366866,"Actual",,,5/9/2007 0:00:00
+"SAJH","AC","2-5","Transect","Active",,"2","Alternating",10,498869,5367130,"Actual",,,5/8/2007 0:00:00
+"SAJH","AC","3-1","Transect","Active",,"3","Alternating",11,499831,5366972,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","3-2","Transect","Active",,"3","Alternating",12,501612,5366822,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","3-3","Transect","Active",,"3","Alternating",13,497798.5,5368098,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","3-4","Transect","Active",,"3","Alternating",14,499460,5367014.86,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","3-5","Transect","Active",,"3","Alternating",15,500703.5,5366879.05,"Actual",,,5/1/2008 0:00:00
+"SAJH","AC","4-1","Transect","Active",,"4","Alternating",16,498522.5,5367228,"Actual",,,7/8/2009 0:00:00
+"SAJH","AC","4-2","Transect","Active",,"4","Alternating",17,500217,5366906,"Actual",,,6/24/2009 0:00:00
+"SAJH","AC","4-3","Transect","Active",,"4","Alternating",18,501428.5,5366832,"Actual",,,6/26/2009 0:00:00
+"SAJH","AC","4-4","Transect","Active",,"4","Alternating",19,497723.5,5368334,"Actual",,,6/3/2009 0:00:00
+"SAJH","AC","4-5","Transect","Active",,"4","Alternating",20,499613,5366992,"Actual",,,7/8/2009 0:00:00
+"SAJH","AC","5-1","Transect","Active",,"5","Alternating",21,501034.5,5366876.19,"Actual",,,6/14/2012 0:00:00
+"SAJH","AC","5-2","Transect","Active",,"5","Alternating",22,498888.5,5367126,"Actual",,,7/11/2012 0:00:00
+"SAJH","AC","5-3","Transect","Active",,"5","Alternating",23,500550,5366869,"Actual",,,7/6/2012 0:00:00
+"SAJH","AC","5-4","Transect","Active",,"5","Alternating",24,501793,5366803.07,"Actual",,,6/1/2012 0:00:00
+"SAJH","AC","5-5","Transect","Active",,"5","Alternating",25,497702,5368380,"Actual",,,5/30/2012 0:00:00
+"SAJH","AC","6-1","Transect","Active",,"6","Alternating",26,499110,5366999.76,"Actual",,,7/17/2013 0:00:00
+"SAJH","AC","6-2","Transect","Active",,"6","Alternating",27,500611,5367003.11,"Actual",,,7/16/2013 0:00:00
+"SAJH","AC","6-3","Transect","Active",,"6","Alternating",28,498642,5367219.41,"Actual",,,7/17/2013 0:00:00
+"SAJH","AC","6-4","Transect","Active",,"6","Alternating",29,499950,5366953,"Actual",,,7/16/2013 0:00:00
+"SAJH","AC","6-5","Transect","Active",,"6","Alternating",30,501290,5366846.37,"Actual",,,7/16/2013 0:00:00
+"SAJH","EC","1-1","Transect","Proposed",,"1","Annual",1,489395.296,5380812.5,"Actual",,,
+"SAJH","EC","1-10","Transect","Proposed",,"1","Annual",10,489537.153,5381540,"Actual",,,
+"SAJH","EC","1-11","Transect","Proposed",,"1","Annual",11,489396.96,5380803.5,"Actual",,,
+"SAJH","EC","1-12","Transect","Proposed",,"1","Annual",12,489348.806,5381083,"Actual",,,
+"SAJH","EC","1-13","Transect","Proposed",,"1","Annual",13,489360.095,5381017.5,"Actual",,,
+"SAJH","EC","1-14","Transect","Proposed",,"1","Annual",14,489396.491,5381340,"Actual",,,
+"SAJH","EC","1-15","Transect","Proposed",,"1","Annual",15,489401.564,5381350,"Actual",,,
+"SAJH","EC","1-2","Transect","Proposed",,"1","Annual",2,489339.449,5381138,"Actual",,,
+"SAJH","EC","1-3","Transect","Proposed",,"1","Annual",3,489383.891,5380879,"Actual",,,
+"SAJH","EC","1-4","Transect","Proposed",,"1","Annual",4,489338.201,5381150.5,"Actual",,,
+"SAJH","EC","1-5","Transect","Proposed",,"1","Annual",5,489435.542,5381411,"Actual",,,
+"SAJH","EC","1-6","Transect","Proposed",,"1","Annual",6,489412.626,5380742,"Actual",,,
+"SAJH","EC","1-7","Transect","Proposed",,"1","Annual",7,489343.744,5381218,"Actual",,,
+"SAJH","EC","1-8","Transect","Proposed",,"1","Annual",8,489362.301,5381004.5,"Actual",,,
+"SAJH","EC","1-9","Transect","Proposed",,"1","Annual",9,489368.473,5381280.5,"Actual",,,
+"SAJH","EC","2-1","Transect","Proposed",,"2","Alternating",16,489374.017,5380935.5,"Actual",,,
+"SAJH","EC","2-2","Transect","Proposed",,"2","Alternating",17,489340.555,5381205.5,"Actual",,,
+"SAJH","EC","2-3","Transect","Proposed",,"2","Alternating",18,489371.76,5380948.5,"Actual",,,
+"SAJH","EC","2-4","Transect","Proposed",,"2","Alternating",19,489443.594,5381422,"Actual",,,
+"SAJH","EC","2-5","Transect","Proposed",,"2","Alternating",20,489491.951,5381483.5,"Actual",,,
+"SAJH","EC","3-1","Transect","Proposed",,"3","Alternating",21,489391.747,5380833,"Actual",,,
+"SAJH","EC","3-2","Transect","Proposed",,"3","Alternating",22,489345.37,5381103,"Actual",,,
+"SAJH","EC","3-3","Transect","Proposed",,"3","Alternating",23,489389.406,5380847,"Actual",,,
+"SAJH","EC","3-4","Transect","Proposed",,"3","Alternating",24,489387.446,5381321,"Actual",,,
+"SAJH","EC","3-5","Transect","Proposed",,"3","Alternating",25,489418.418,5381383,"Actual",,,
+"SAJH","EC","4-1","Transect","Proposed",,"4","Alternating",26,489377.142,5380917.5,"Actual",,,
+"SAJH","EC","4-2","Transect","Proposed",,"4","Alternating",27,489351.183,5381240,"Actual",,,
+"SAJH","EC","4-3","Transect","Proposed",,"4","Alternating",28,489366.601,5380979,"Actual",,,
+"SAJH","EC","4-4","Transect","Proposed",,"4","Alternating",29,489356.584,5381253,"Actual",,,
+"SAJH","EC","4-5","Transect","Proposed",,"4","Alternating",30,489513.951,5381511,"Actual",,,
+"SAJH","EC","5-1","Transect","Proposed",,"5","Alternating",31,489402.673,5380774.5,"Actual",,,
+"SAJH","EC","5-2","Transect","Proposed",,"5","Alternating",32,489354.82,5381048.5,"Actual",,,
+"SAJH","EC","5-3","Transect","Proposed",,"5","Alternating",33,489356.785,5381037,"Actual",,,
+"SAJH","EC","5-4","Transect","Proposed",,"5","Alternating",34,489381.733,5381309,"Actual",,,
+"SAJH","EC","5-5","Transect","Proposed",,"5","Alternating",35,489523.021,5381522.5,"Actual",,,
+"SAJH","EC","6-1","Transect","Proposed",,"6","Alternating",36,489379.231,5380905.5,"Actual",,,
+"SAJH","EC","6-2","Transect","Proposed",,"6","Alternating",37,489337.133,5381180.5,"Actual",,,
+"SAJH","EC","6-3","Transect","Proposed",,"6","Alternating",38,489343.001,5381117,"Actual",,,
+"SAJH","EC","6-4","Transect","Proposed",,"6","Alternating",39,489458.241,5381441,"Actual",,,
+"SAJH","EC","6-5","Transect","Proposed",,"6","Alternating",40,489468.904,5381454.5,"Actual",,,

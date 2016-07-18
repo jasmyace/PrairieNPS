@@ -3,6 +3,10 @@ require(rgdal)
 
 progStem <- "//lar-file-srv/Data/NPS/Prairie/Programs"
 dataStem <- "//lar-file-srv/Data/NPS/Prairie/Data/Data_files_20160711"
+
+#progStem <- "C:/Users/jmitchell/Desktop/Prairie/Programs"
+#dataStem <- "C:/Users/jmitchell/Desktop/Prairie/Data/Data_files_20160711"
+
 projUTM10 <- "+proj=utm +zone=10 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 
 
@@ -30,7 +34,12 @@ table3 <- table3[,c('LocCode','2007','2008','2009','2012','2013','2014','2015')]
 
 # Questions.
 # 1.  What is the projection?  I assumed UTM-10N.
-# 2.  Query a144 has only American Camp data.
+# 2.  Query a144 has only American Camp data?
+# 3.  Does Table 2 on page 16 correspond with the look-up table?  
+# 4.  Flesh out data with 0.0%?
+# 5.  What does the use of the word "area" mean in Table 1?
+# 6.  Figure 15:  "Nativeness" means "Origin" in query a144?
+# 7.  Figure 15:  "Subveg" means "CoverClass" in query a144?
 
 
 #   ---- Bring in helpful information from other queries.
@@ -74,22 +83,42 @@ a144$End <- ifelse( a144$VegType == "End",1,0)
 #   ---- Make transect shapefiles.  
 makeTransectShp(a144,type="Walked",proj=projUTM10)     
 
+#   ---- Get historical trends of Table 2.
+table2 <- read.csv("//lar-file-srv/Data/NPS/Prairie/Data/Table2.csv",stringsAsFactors=FALSE)
+
+#   Bare Earth             Unvegetated    U
+#   Buildings              Developed      D
+#   Forest                 Tree           T
+#   Managed Grassland      ? Shrub ?      S
+#   Prairie                ? Herbaceous ? H
+#   Roads                  Developed      D
+#   Water 
 
 
 
-num <- with(a144, aggregate(a144$SegNumM, data.frame(a144$Year,a144$LocCode,a144$VegType), sum))
-den <- with(a144, aggregate(a144$SegNumM, data.frame(a144$Year,a144$LocCode), sum))
 
-colnames(num) <- c('Year','LocCode','VegType','SegLenM')
-colnames(den) <- c('Year','LocCode','TransectLenM')
+
+#   ---- Build data for graphical displays of trend of VegType over time.
+num <- with(a144, aggregate(a144$SegNumM, data.frame(a144$UnitCode,a144$Year,a144$LocCode,a144$VegType), sum))
+den <- with(a144, aggregate(a144$SegNumM, data.frame(a144$UnitCode,a144$Year,a144$LocCode), sum))
+
+colnames(num) <- c('UnitCode','Year','LocCode','VegType','SegLenM')
+colnames(den) <- c('UnitCode','Year','LocCode','TransectLenM')
 
 num <- num[order(num$LocCode,num$Year,num$VegType),]
 den <- den[order(den$LocCode,den$Year),]
 
-dat <- merge(num,den,by=c('Year','LocCode'),all.x=TRUE)
+dat <- merge(num,den,by=c('UnitCode','Year','LocCode'),all.x=TRUE)
 dat$pCover <- 100*dat$SegLenM / dat$TransectLenM
 dat <- dat[dat$VegType != "End",]
 
+dat <- merge(dat,a104[,c('Unit_code','Location_code','Panel_type')],by.x=c('UnitCode','LocCode'),by.y=c('Unit_code','Location_code'))
+
+#   ---- Get cover-code meanings.  
+VegTypeCodes <- read.csv("C:/Users/jmitchell/Desktop/Prairie/Data/Lookups_20160711/tlu_Veg_Type.csv",stringsAsFactors=FALSE)
+VegTypeCodes[VegTypeCodes$Veg_type == "D",]$Veg_desc <- "Developed"
+VegTypeCodes[VegTypeCodes$Veg_type == "U",]$Veg_desc <- "Unvegetated"
+dat <- merge(dat,VegTypeCodes,by.x=c('VegType'),by.y=c('Veg_type'),all.x=TRUE)
 dat <- dat[order(dat$LocCode,dat$VegType,dat$Year),]
 
 dat$Color <- NA
@@ -99,25 +128,163 @@ dat$Color[dat$VegType == "S"] <- "yellow"
 dat$Color[dat$VegType == "T"] <- "green"
 dat$Color[dat$VegType == "U"] <- "blue"
 
-locCodes <- unique(dat$LocCode)
-for(i in 1:length(locCodes)){
+
+unitCodes <- unique(dat$UnitCode)
+for(h in 1:length(unitCodes)){
   
-  lilDat <- dat[dat$LocCode == locCodes[i],]
-  vegTypes <- unique(lilDat$VegType)
-  
-  for(j in 1:length(vegTypes)){
+  unitCode <- as.character(droplevels(unitCodes[h]))
+  lilTable2 <- table2[table2$UnitCode == unitCode,]
+
+  locCodes <- unique(dat$LocCode)
+  for(i in 1:length(locCodes)){
     
-    x <- lilDat[lilDat$VegType == vegTypes[j],]$Year 
-    y <- lilDat[lilDat$VegType == vegTypes[j],]$pCover
-    c <- lilDat[lilDat$VegType == vegTypes[j],]$Color
-  
-    if(j > 1){par(new=TRUE)}
-    plot(x,y,xlim=c(2007,2015),ylim=c(0,100),col=c,pch=19)
-    par(new=TRUE)
-    plot(x,y,xlim=c(2007,2015),ylim=c(0,100),col=c,type='l')
+    locCode <- as.character(droplevels(locCodes[i]))
+    lilDat <- dat[dat$LocCode == locCode,]
+    vegTypes <- unique(lilDat$VegType)
+    Panel_type <- lilDat$Panel_type[1]
+    
+    saveStem <- "//lar-file-srv/Data/NPS/Prairie/Analysis/Trending"
+    pngTitle <- paste0(saveStem,"/Temporal Trends -- ",unitCode," -- ",Panel_type," Transect ",locCode,".png")
+    
+    png(pngTitle,width=11,height=8.5,units="in",res=600)
+    
+    for(j in 1:length(vegTypes)){
+      
+      if(unitCode == "AC"){
+        niceUnitCode <- "American Camp"
+      } else {
+        niceUnitCode <- "English Camp"
+      }
+      
+      title <- paste0("Temporal Trends -- ",niceUnitCode,":  ",Panel_type," Transect ",locCode)
+      
+      x <- lilDat[lilDat$VegType == vegTypes[j],]$Year 
+      y <- lilDat[lilDat$VegType == vegTypes[j],]$pCover
+      c <- lilDat[lilDat$VegType == vegTypes[j],]$Color
+    
+      if(j == 1){
+        plot(x,y,xlim=c(2007,2015),ylim=c(0,100),xlab="Year",ylab="Percent Cover",col=c,pch=19,main=title)
+        par(new=TRUE)
+        plot(x,y,xaxt="n",yaxt="n",xlim=c(2007,2015),ylim=c(0,100),xlab="",ylab="",col=c,type='l')
+      } else {
+        par(new=TRUE)
+        plot(x,y,xaxt="n",yaxt="n",xlim=c(2007,2015),ylim=c(0,100),xlab="",ylab="",col=c,pch=19)
+        par(new=TRUE)
+        plot(x,y,xaxt="n",yaxt="n",xlim=c(2007,2015),ylim=c(0,100),xlab="",ylab="",col=c,type='l')
+      }
+      
+      #    ---- Make a legend specific to this plot. 
+      legendDat <- unique(lilDat[,c('Veg_desc','Color')])
+      legend("left",legendDat$Veg_desc,col=legendDat$Color,pch=rep(19,nrow(legendDat)),lwd=rep(1,nrow(legendDat)))
+    }
+    dev.off()
   }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#   ---- Build data for graphical displays of trend of CoverClass over time.
+
+theH <- a144[a144$VegType == "H" & !is.na(a144$VegType),]
+theH$CoverClassT <- ifelse(theH$Origin == "N",paste0("E-",theH$CoverClass),
+                           ifelse(theH$Origin == "E",paste0("N-",theH$CoverClass),
+                                  "Other"))
+num <- with(theH, aggregate(theH$SegNumM, data.frame(theH$UnitCode,theH$Year,theH$LocCode,theH$CoverClassT), sum))
+den <- with(theH, aggregate(theH$SegNumM, data.frame(theH$UnitCode,theH$Year,theH$LocCode), sum))
+
+colnames(num) <- c('UnitCode','Year','LocCode','CoverClassT','SegLenM')
+colnames(den) <- c('UnitCode','Year','LocCode','HTransectLenM')
+
+num <- num[order(num$LocCode,num$Year,num$CoverClassT),]
+den <- den[order(den$LocCode,den$Year),]
+
+dat <- merge(num,den,by=c('UnitCode','Year','LocCode'),all.x=TRUE)
+dat$pCover <- 100*dat$SegLenM / dat$HTransectLenM
+#dat <- dat[dat$VegType != "End",]
+
+dat <- merge(dat,a104[,c('Unit_code','Location_code','Panel_type')],by.x=c('UnitCode','LocCode'),by.y=c('Unit_code','Location_code'))
+
+#   ---- Get cover-code meanings.  
+# VegTypeCodes <- read.csv("C:/Users/jmitchell/Desktop/Prairie/Data/Lookups_20160711/tlu_Veg_Type.csv",stringsAsFactors=FALSE)
+# VegTypeCodes[VegTypeCodes$Veg_type == "D",]$Veg_desc <- "Developed"
+# VegTypeCodes[VegTypeCodes$Veg_type == "U",]$Veg_desc <- "Unvegetated"
+# dat <- merge(dat,VegTypeCodes,by.x=c('VegType'),by.y=c('Veg_type'),all.x=TRUE)
+dat <- dat[order(dat$LocCode,dat$CoverClassT,dat$Year),]
+
+dat$Color <- NA
+dat$Color[dat$CoverClassT == "E-0-10%"] <- "pink"
+dat$Color[dat$CoverClassT == "E-11-49%"] <- "red"
+dat$Color[dat$CoverClassT == "E-50-100%"] <- "red4"
+dat$Color[dat$CoverClassT == "N-0-10%"] <- "lightgreen"
+dat$Color[dat$CoverClassT == "N-11-49%"] <- "green"
+dat$Color[dat$CoverClassT == "N-50-100%"] <- "darkgreen"
+
+
+unitCodes <- unique(dat$UnitCode)
+for(h in 1:length(unitCodes)){
+  
+  unitCode <- as.character(droplevels(unitCodes[h]))
+  
+  locCodes <- unique(dat$LocCode)
+  for(i in 1:length(locCodes)){
+    
+    locCode <- as.character(droplevels(locCodes[i]))
+    lilDat <- dat[dat$LocCode == locCode,]
+    lilDat$CoverClassT <- as.character(droplevels(lilDat$CoverClassT))
+    coverClassTs <- unique(lilDat$CoverClassT)
+    Panel_type <- lilDat$Panel_type[1]
+    
+    saveStem <- "//lar-file-srv/Data/NPS/Prairie/Analysis/Trending"
+    pngTitle <- paste0(saveStem,"/Temporal Trends -- Cover Class -- ",unitCode," -- ",Panel_type," Transect ",locCode,".png")
+    
+    png(pngTitle,width=11,height=8.5,units="in",res=600)
+    
+    for(j in 1:length(coverClassTs)){
+      
+      if(unitCode == "AC"){
+        niceUnitCode <- "American Camp"
+      } else {
+        niceUnitCode <- "English Camp"
+      }
+      
+      title <- paste0("Temporal Trends -- Cover Class -- ",niceUnitCode,":  ",Panel_type," Transect ",locCode)
+      
+      x <- lilDat[lilDat$CoverClassT == coverClassTs[j],]$Year 
+      y <- lilDat[lilDat$CoverClassT == coverClassTs[j],]$pCover
+      c <- lilDat[lilDat$CoverClassT == coverClassTs[j],]$Color
+      
+      if(j == 1){
+        plot(x,y,xlim=c(2007,2015),ylim=c(0,100),xlab="Year",ylab="Percent Cover",col=c,pch=19,main=title)
+        par(new=TRUE)
+        plot(x,y,xaxt="n",yaxt="n",xlim=c(2007,2015),ylim=c(0,100),xlab="",ylab="",col=c,type='l')
+      } else {
+        par(new=TRUE)
+        plot(x,y,xaxt="n",yaxt="n",xlim=c(2007,2015),ylim=c(0,100),xlab="",ylab="",col=c,pch=19)
+        par(new=TRUE)
+        plot(x,y,xaxt="n",yaxt="n",xlim=c(2007,2015),ylim=c(0,100),xlab="",ylab="",col=c,type='l')
+      }
+      
+      #    ---- Make a legend specific to this plot. 
+      legendDat <- unique(lilDat[,c('CoverClassT','Color')])
+      legend("left",legendDat$CoverClassT,col=legendDat$Color,pch=rep(19,nrow(legendDat)),lwd=rep(1,nrow(legendDat)))
+    }
+    dev.off()
+  }
+}
 
 

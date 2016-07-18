@@ -1,0 +1,29 @@
+LandCoverType,vegType,Year,UnitCode,ha
+Bare Earth,U,1997,AC,34.4
+Buildings,D,1997,AC,0.04
+Forest,T,1997,AC,146.3
+Managed Grassland,S,1997,AC,2.1
+Prairie,H,1997,AC,312.1
+Roads,D,1997,AC,6.7
+Water,U,1997,AC,3.6
+Bare Earth,U,2007,AC,34.6
+Buildings,D,2007,AC,0.04
+Forest,T,2007,AC,176.4
+Managed Grassland,S,2007,AC,5.1
+Prairie,H,2007,AC,281.5
+Roads,D,2007,AC,6.8
+Water,U,2007,AC,4.1
+Bare Earth,U,1997,EC,0.5
+Buildings,D,1997,EC,0.08
+Forest,T,1997,EC,173.4
+Managed Grassland,S,1997,EC,2.9
+Prairie,H,1997,EC,26.7
+Roads,D,1997,EC,1.4
+Water,U,1997,EC,0.2
+Bare Earth,U,2007,EC,0.4
+Buildings,D,2007,EC,0.08
+Forest,T,2007,EC,174.2
+Managed Grassland,S,2007,EC,3.4
+Prairie,H,2007,EC,25.9
+Roads,D,2007,EC,1.4
+Water,U,2007,EC,0
